@@ -16,6 +16,7 @@ gem 'dalli'
 gem 'paperclip'
 gem 'kolo'
 gem 'delayed_job_active_record'
+gem 'kaminari'
 group :development, :test do
   gem 'byebug'
   gem 'web-console', '~> 2.0'
@@ -28,6 +29,7 @@ group :development, :test do
   gem 'mocha', require: false
   gem 'poltergeist'
   gem 'selenium-webdriver'
+  gem 'timecop'
 end
 group :production do
   gem 'shelly-dependencies'
