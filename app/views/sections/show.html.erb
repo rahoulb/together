@@ -1,0 +1,27 @@
+<div class="container section-header">
+  <div class="col-xs-12">
+    <h1><%= @section.name %></h1>
+    <img src="<%= @section.header_image.url %>">
+    <p><%= @section.description %></p>
+  </div>
+</div>
+<div class="container pages">
+  <div class="col-xs-12">
+    <ul class="list-unstyled">
+      <% @pages.each do | page | %>
+        <%= content_tag_for :li, page do %>
+          <a href="/p/<%= page.to_param %>"><%= page.title %></a>
+        <% end %>
+      <% end %>
+      <li class="pagination">
+        <a class="pull-right" href="/s/<%= @section.to_param %>/page/<%= @next_page_number %>"><%= t :older_pages, scope: 'front.section' %></a>
+
+        <% if @previous_page_number %>
+          <a href="/s/<%= @section.to_param %>/page/<%= @previous_page_number %>"><%= t :newer_pages, scope: 'front.section' %></a>
+        <% end %>
+      </li>
+    </ul>
+  </div>
+</div>
+
+

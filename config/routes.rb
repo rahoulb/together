@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 's/:section_id' => 'sections#show'
+  get 's/:section_id/page/:page' => 'sections#show'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

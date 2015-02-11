@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150211200533) do
+ActiveRecord::Schema.define(version: 20150211204212) do
 
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer  "priority",   limit: 4,     default: 0, null: false
@@ -28,5 +28,39 @@ ActiveRecord::Schema.define(version: 20150211200533) do
   end
 
   add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
+
+  create_table "pages", force: :cascade do |t|
+    t.integer  "section_id",                limit: 4
+    t.string   "title",                     limit: 255,   null: false
+    t.text     "excerpt",                   limit: 65535
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
+    t.string   "header_iamge_file_name",    limit: 255
+    t.string   "header_iamge_content_type", limit: 255
+    t.integer  "header_iamge_file_size",    limit: 4
+    t.datetime "header_iamge_updated_at"
+  end
+
+  add_index "pages", ["section_id", "title"], name: "index_pages_on_section_id_and_title", unique: true, using: :btree
+
+  create_table "sections", force: :cascade do |t|
+    t.integer  "website_id",                limit: 4
+    t.string   "name",                      limit: 255,   null: false
+    t.text     "description",               limit: 65535
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
+    t.string   "header_image_file_name",    limit: 255
+    t.string   "header_image_content_type", limit: 255
+    t.integer  "header_image_file_size",    limit: 4
+    t.datetime "header_image_updated_at"
+  end
+
+  add_index "sections", ["website_id", "name"], name: "index_sections_on_website_id_and_name", unique: true, using: :btree
+
+  create_table "websites", force: :cascade do |t|
+    t.string   "domain",     limit: 255, null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
 
 end
